@@ -6,12 +6,11 @@ const app = express()
 // ========================
 // Link to Database
 // ========================
-// Updates environment variables
-// @see https://zellwk.com/blog/environment-variables/
+
 require('./dotenv')
 
-// Replace process.env.DB_URL with your actual connection string
-const connectionString = process.env.DB_URL
+
+const connectionString = "mongodb+srv://dbuser:dbuser@node-demo.byxq7.mongodb.net/node-demo?retryWrites=true&w=majority";
 
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
   .then(client => {
@@ -22,6 +21,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     // ========================
     // Middlewares
     // ========================
+
     app.set('view engine', 'ejs')
     app.use(bodyParser.urlencoded({ extended: true }))
     app.use(bodyParser.json())
@@ -30,6 +30,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     // ========================
     // Routes
     // ========================
+
     app.get('/', (req, res) => {
       db.collection('quotes').find().toArray()
         .then(quotes => {
@@ -79,10 +80,13 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     // ========================
     // Listen
     // ========================
-    const isProduction = process.env.NODE_ENV === 'production'
-    const port = isProduction ? 7500 : 3000
-    app.listen(port, function () {
-      console.log(`listening on ${port}`)
-    })
+
+    //const isProduction = process.env.NODE_ENV === 'production'
+    //const port = isProduction ? 7500 : 3000
+
+    app.listen(process.env.PORT || 3000, function() {
+      console.log('Listening on port 3000');
+  });
+
   })
   .catch(console.error)

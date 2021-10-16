@@ -2,56 +2,58 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Star Wars Quote App</title>
+    <title>Occasion Tracker</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
 
   <body>
-    <h1 data-position="header">May Node and Express be with you.</h1>
+    <h1 data-position="header">Occasion and Gift Tracker</h1>
 
-    <section data-position="add-quote">
-      <h2>Add quote</h2>
+    <section data-position="add-occasion-info">
+      <h2>Add Occasin Info</h2>
+      <p>Enter your occasion info.  Example:
+        Name, occaison, gift, and date gift provided.
+      </p>
 
       <form action="/quotes" method="POST">
         <input type="text" placeholder="name" name="name" />
-        <input type="text" placeholder="quote" name="quote" />
+        <input type="text" placeholder="occaison info" name="quote" />
         <button type="submit">Submit</button>
       </form>
     </section>
 
     <section data-position="update-quote">
       <div>
-        <h2>Darth Vadar invades!</h2>
+        <h2>Generic Info</h2>
         <p>
-          Replace first Yoda's quote with a quote written by Darth Vadar
+         A generica occaison allows for inputing additional info.
         </p>
-        <button id="update-button">Replace Yoda's quote</button>
+        <button id="update-button">Add/Info</button>
       </div>
     </section>
 
     <section data-position="delete-quote">
       <div>
-        <h2>Remove Darth Vadar!</h2>
+        <h2>Remove Info</h2>
         <p>
-          Delete one Darth Vadar's quote. Does nothing if there are no more
-          Darth Vadar's quote
+          Delete the generic info. Does nothing if there is no generic quote
         </p>
-        <button id="delete-button">Delete Darth Vadar's quote</button>
+        <button id="delete-button">Delete</button>
       </div>
       <div id="message"></div>
     </section>
 
     <section data-position="quotes">
-      <h2>Quotes</h2>
+      <h2>Inportant info to Remember</h2>
 
-      <ul class="quotes">
+      <ol class="quotes">
         <% for(var i = 0; i < quotes.length; i++) {%>
         <li class="quote">
           <span><%= quotes[i].name %></span>:
           <span><%= quotes[i].quote %></span>
         </li>
         <% } %>
-      </ul>
+      </ol>
     </section>
 
     <script src="/main.js"></script>
